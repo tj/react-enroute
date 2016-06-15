@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { Router, Route } from '..'
-import assert from './assert'
+import assert from 'assert-equal-jsx'
 
 function Index({ children }) {
   return <div>
