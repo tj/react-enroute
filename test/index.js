@@ -39,10 +39,23 @@ function NotFound() {
   return <div>Not Found</div>
 }
 
+function List({ items }) {
+  return <ul>{items.map((item, i) => <li key={i}>{item}</li>)}</ul>
+}
+
 // Simple index route
 assert(<Router location="/">
   <Route path="/" component={Index} />
 </Router>, <Index />)
+
+// Props
+assert(<Router location="/list" items={["foo", "bar", "baz"]}>
+  <Route path="/" component={Index}>
+    <Route path="list" component={List} />
+  </Route>
+</Router>, <Index>
+  <List items={["foo", "bar", "baz"]} />
+</Index>)
 
 // Nested route
 assert(<Router location="/pets">
