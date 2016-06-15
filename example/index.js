@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route } from '..'
 
+// note this is just an example, this package does not provide
+// a Link equivalent found in react-router, nor does it provide
+// bindings for tools like Redux. You'll need to wire these up
+// as desired.
 function Link({ to, children }) {
   function click(e) {
     e.preventDefault()
