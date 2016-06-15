@@ -5,6 +5,8 @@
 
  Roughly ~1300% smaller than react-router, however this package does not attempt to be a drop-in replacement. The react-router package provides legacy browser support and transitions, so you'll want to choose accordingly!
 
+ See [path-to-regexp](https://github.com/pillarjs/path-to-regexp) for path matching, this is the same library used by Express.
+
 ## Installation
 
  ```
