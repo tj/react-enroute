@@ -132,15 +132,31 @@ window.addEventListener('popstate', e => {
 })
 
 // function render(state) {
+  // ReactDOM.render(<Router {...state}>
+  //   <Route path="/" component={Index} />
+  //
+  //   <Route path="/users" component={Users}>
+  //     <Route path=":id" component={User} />
+  //   </Route>
+  //
+  //   <Route path="/pets" component={Pets}>
+  //     <Route path=":id" component={Pet} />
+  //   </Route>
+  //
+  //   <Route path="*" component={NotFound} />
+  // </Router>, document.querySelector('#app'))
+// }
+
+// function render(state) {
 //   ReactDOM.render(<Router {...state}>
-//     <Route path="/" component={Index} />
+//     <Route path="/" component={Index}>
+//       <Route path="users" component={Users}>
+//         <Route path=":id" component={User} />
+//       </Route>
 //
-//     <Route path="/users" component={Users}>
-//       <Route path=":id" component={User} />
-//     </Route>
-//
-//     <Route path="/pets" component={Pets}>
-//       <Route path=":id" component={Pet} />
+//       <Route path="pets" component={Pets}>
+//         <Route path=":id" component={Pet} />
+//       </Route>
 //     </Route>
 //
 //     <Route path="*" component={NotFound} />
@@ -149,19 +165,15 @@ window.addEventListener('popstate', e => {
 
 function render(state) {
   ReactDOM.render(<Router {...state}>
-    <Route path="/" component={Index}>
-      <Route path="users" component={Users}>
-        <Route path=":id" component={User} />
-      </Route>
-
-      <Route path="pets" component={Pets}>
-        <Route path=":id" component={Pet} />
-      </Route>
-    </Route>
-
+    <Route path="/" component={Index} />
+    <Route path="/users" component={Users} />
+    <Route path="/users/:id" component={User} />
+    <Route path="/pets" component={Pets} />
+    <Route path="/pets/:id" component={Pet} />
     <Route path="*" component={NotFound} />
   </Router>, document.querySelector('#app'))
 }
+
 
 // TODO: update readme examples
 // TODO: index / redirect
