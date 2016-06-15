@@ -22,8 +22,8 @@ react-enroute:
 
 react-router:
 
-- regular: 104kb
-- gzipped: 21kb
+- regular: 72kb
+- gzipped: 13kb
 
 ## Examples
 
