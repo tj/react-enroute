@@ -22,16 +22,18 @@
     ]
   },
   "devDependencies": {
-    "babel-jest": "^12.1.0",
+    "chalk": "^1.1.3",
+    "diff": "^2.2.3",
+    "js-beautify": "^1.6.3",
     "react": "^15.0.0",
+    "react-dom": "^15.1.0",
     "react-fatigue-dev": "github:tj/react-fatigue-dev"
   },
   "files": [
     "build"
   ],
   "dependencies": {
-    "enroute": "^1.0.1",
-    "invariant": "^2.2.1"
+    "enroute": "^1.0.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0"

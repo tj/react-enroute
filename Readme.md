@@ -76,14 +76,6 @@ ReactDOM.render(<Router {...state}>
 </Router>, document.querySelector('#app'))
 ```
 
-## Debugging
-
-To view a list of the routes generated toggle the following:
-
-```js
-localStorage.debugRoutes = 'yep'
-```
-
 ## Developing
 
 Build:
@@ -96,6 +88,12 @@ Start dev server:
 
 ```
 $ make start
+```
+
+Running tests:
+
+```
+$ make test
 ```
 
 ## Badges

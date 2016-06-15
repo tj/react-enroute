@@ -62,7 +62,6 @@ export class Router extends Component {
 
   render() {
     const { location } = this.props
-    if (localStorage.debugRoutes) console.log('routes:', Object.keys(this.routes))
     assert(location, `Router "location" property is missing`)
     return this.router(location, { children: null })
   }
