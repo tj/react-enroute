@@ -1,0 +1,21 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 50px;
+  font: 15px/1.6 Helvetica, Arial, sans-serif;
+}
+
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}

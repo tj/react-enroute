@@ -1,0 +1,39 @@
+{
+  "name": "react-enroute",
+  "version": "0.0.1",
+  "description": "Small react router",
+  "author": "TJ Holowaychuk <tj@tjholowaychuk.com>",
+  "main": "build/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "make build"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "history",
+    "router",
+    "enroute",
+    "small"
+  ],
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "devDependencies": {
+    "babel-jest": "^12.1.0",
+    "react": "^15.0.0",
+    "react-fatigue-dev": "github:tj/react-fatigue-dev"
+  },
+  "files": [
+    "build"
+  ],
+  "dependencies": {
+    "enroute": "^1.0.1",
+    "invariant": "^2.2.1"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0"
+  }
+}
