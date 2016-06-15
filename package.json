@@ -1,6 +1,7 @@
 {
   "name": "react-enroute",
   "version": "0.0.1",
+  "repository": "tj/react-enroute",
   "description": "Small react router",
   "author": "TJ Holowaychuk <tj@tjholowaychuk.com>",
   "main": "build/index.js",
