@@ -1,9 +1,7 @@
 
 # react-enroute
 
- Simple React router with a small footprint for modern browsers.
-
- Roughly ~800% smaller than react-router, however this package does not attempt to be a drop-in replacement. The react-router package provides legacy browser support and transitions, so you'll want to choose accordingly!
+ Simple React router with a small footprint for modern browsers. This package is not meant to be a drop-in replacement for react-router, just a smaller simpler alternative.
 
  See [path-to-regexp](https://github.com/pillarjs/path-to-regexp) for path matching, this is the same library used by Express.
 
@@ -12,18 +10,6 @@
  ```
  $ npm install react-enroute
  ```
-
-## Size Comparison
-
-react-enroute:
-
-- regular: 5.6kb
-- gzipped: 1.5kb
-
-react-router:
-
-- regular: 72kb
-- gzipped: 13kb
 
 ## Examples
 
