@@ -49,9 +49,7 @@ export class Router extends Component {
     }
 
     const route = normalizeRoute(path, parent)
-    const child = { route, render }
-
-    if (children) this.addRoutes(children, child)
+    if (children) this.addRoutes(children, { route, render })
 
     this.routes[cleanPath(route)] = render
   }
