@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Router, Route } from '..'
+import { Router, Route } from '../index'
 
 // note this is just an example, this package does not provide
 // a Link equivalent found in react-router, nor does it provide
@@ -151,32 +151,32 @@ window.addEventListener('popstate', e => {
   // </Router>, document.querySelector('#app'))
 // }
 
-// function render(state) {
-//   ReactDOM.render(<Router {...state}>
-//     <Route path="/" component={Index}>
-//       <Route path="users" component={Users}>
-//         <Route path=":id" component={User} />
-//       </Route>
-//
-//       <Route path="pets" component={Pets}>
-//         <Route path=":id" component={Pet} />
-//       </Route>
-//     </Route>
-//
-//     <Route path="*" component={NotFound} />
-//   </Router>, document.querySelector('#app'))
-// }
-
 function render(state) {
   ReactDOM.render(<Router {...state}>
-    <Route path="/" component={Index} />
-    <Route path="/users" component={Users} />
-    <Route path="/users/:id" component={User} />
-    <Route path="/pets" component={Pets} />
-    <Route path="/pets/:id" component={Pet} />
+    <Route path="/" component={Index}>
+      <Route path="users" component={Users}>
+        <Route path=":id" component={User} />
+      </Route>
+
+      <Route path="pets" component={Pets}>
+        <Route path=":id" component={Pet} />
+      </Route>
+    </Route>
+
     <Route path="*" component={NotFound} />
   </Router>, document.querySelector('#app'))
 }
+
+// function render(state) {
+//   ReactDOM.render(<Router {...state}>
+//     <Route path="/" component={Index} />
+//     <Route path="/users" component={Users} />
+//     <Route path="/users/:id" component={User} />
+//     <Route path="/pets" component={Pets} />
+//     <Route path="/pets/:id" component={Pet} />
+//     <Route path="*" component={NotFound} />
+//   </Router>, document.querySelector('#app'))
+// }
 
 
 // TODO: update readme examples

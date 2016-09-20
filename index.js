@@ -36,14 +36,13 @@ export class Router extends Component {
    */
 
   addRoute(el, parent) {
-    const { location, ...props } = this.props
     const { path, component, children } = el.props
 
     assert(typeof path == 'string', `Route ${context(el.props)}is missing the "path" property`)
     assert(component, `Route ${context(el.props)}is missing the "component" property`)
 
-    function render(params, renderProps) {
-      const finalProps = { ...props, ...renderProps, location, params }
+    const render = (params, renderProps) => {
+      const finalProps = { ...this.props, ...renderProps, params }
       const children = React.createElement(component, finalProps)
       return parent ? parent.render(params, { children }) : children
     }
