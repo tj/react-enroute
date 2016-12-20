@@ -44,7 +44,7 @@ ReactDOM.render(<Router {...state}>
 </Router>, document.querySelector('#app'))
 ```
 
-Moar nesting:
+More nesting:
 
 ```js
 ReactDOM.render(<Router {...state}>
