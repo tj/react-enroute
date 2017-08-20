@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 import { Router, Route } from '..'
 import assert from 'assert-equal-jsx'
 
@@ -56,6 +56,10 @@ assert(<Router location="/list" items={["foo", "bar", "baz"]}>
 </Router>, <Index>
   <List items={["foo", "bar", "baz"]} />
 </Index>)
+
+assert(<Router location="/list">
+  <Route path="/list" component={List} items={["foo", "bar", "baz"]} />
+</Router>, <List items={["foo", "bar", "baz"]} />)
 
 // Nested route
 assert(<Router location="/pets">
