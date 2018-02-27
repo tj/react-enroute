@@ -1,7 +1,7 @@
-
+import {equal} from 'assert'
 import React, { Component } from 'react'
+import {renderToStaticMarkup} from 'react-dom/server'
 import { Router, Route } from '..'
-import assert from 'assert-equal-jsx'
 
 function Index({ children }) {
   return <div>
@@ -146,3 +146,9 @@ assert(<Router location="/users/5/pets/2">
     </User>
   </Users>
 </Index>)
+
+function assert(actual, expected) {
+  actual = renderToStaticMarkup(actual);
+  expected = renderToStaticMarkup(expected);
+  equal(actual, expected);
+}
