@@ -23,9 +23,8 @@
     ]
   },
   "devDependencies": {
-    "assert-equal-jsx": "^1.0.3",
-    "react": "^15.0.0",
-    "react-dom": "^15.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-fatigue-dev": "github:tj/react-fatigue-dev"
   },
   "files": [
@@ -35,6 +34,6 @@
     "enroute": "^1.0.1"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
 }
