@@ -1,5 +1,5 @@
 import {equal} from 'assert'
-import React, { Component } from 'react'
+import React from 'react'
 import {renderToStaticMarkup} from 'react-dom/server'
 import { Router, Route } from '..'
 
@@ -56,6 +56,11 @@ assert(<Router location="/list" items={["foo", "bar", "baz"]}>
 </Router>, <Index>
   <List items={["foo", "bar", "baz"]} />
 </Index>)
+
+// Route props
+assert(<Router location="/list">
+  <Route path="/list" component={List} items={["foo", "bar", "baz"]} />
+</Router>, <List items={["foo", "bar", "baz"]} />)
 
 // Nested route
 assert(<Router location="/pets">
