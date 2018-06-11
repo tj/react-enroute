@@ -152,6 +152,25 @@ assert(<Router location="/users/5/pets/2">
   </Users>
 </Index>)
 
+// Index route
+assert(<Router location="/">
+  <Route component={Index} />
+</Router>, <Index />)
+
+// Nested index route
+assert(<Router location="/">
+  <Route path="/" component={Index}>
+    <Route component={Pets} />
+  </Route>
+</Router>, <Index><Pets /></Index>)
+
+// Several nested index routes
+assert(<Router location="/">
+  <Route component={Index}>
+    <Route component={Pets} />
+  </Route>
+</Router>, <Index><Pets /></Index>)
+
 function assert(actual, expected) {
   actual = renderToStaticMarkup(actual);
   expected = renderToStaticMarkup(expected);

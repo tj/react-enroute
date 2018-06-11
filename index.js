@@ -38,7 +38,6 @@ export class Router extends Component {
   addRoute(el, parent) {
     const { path, component, children, ...routeProps } = el.props
 
-    assert(typeof path == 'string', `Route ${context(el.props)}is missing the "path" property`)
     assert(component, `Route ${context(el.props)}is missing the "component" property`)
 
     const render = (params, renderProps) => {
@@ -47,10 +46,10 @@ export class Router extends Component {
       return parent ? parent.render(params, { children }) : children
     }
 
-    const route = normalizeRoute(path, parent)
-    if (children) this.addRoutes(children, { route, render })
+    const route = cleanPath(normalizeRoute(path, parent))
+    this.routes[route] = render
 
-    this.routes[cleanPath(route)] = render
+    if (children) this.addRoutes(children, { route, render })
   }
 
   /**
@@ -87,6 +86,7 @@ function context({ path, component }) {
  */
 
 function normalizeRoute(path, parent) {
+  if (!path) return parent ? parent.route : '/'
   if (path[0] == '/') return path  // "/" signifies an absolute route
   if (parent == null) return path  // no need for a join
   return `${parent.route}/${path}` // join
