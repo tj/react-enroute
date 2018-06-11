@@ -30,13 +30,14 @@ Some nesting:
 
 ```js
 ReactDOM.render(<Router {...state}>
-  <Route path="/" component={Index} />
+  <Route component={Index} />
 
   <Route path="/users" component={Users}>
     <Route path=":id" component={User} />
   </Route>
 
-  <Route path="/pets" component={Pets}>
+  <Route path="/pets" component={PetsContainer}>
+    <Route component={Pets} />
     <Route path=":id" component={Pet} />
   </Route>
 
