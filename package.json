@@ -8,7 +8,7 @@
   "module": "build/index.esm.js",
   "license": "MIT",
   "scripts": {
-    "prepack": "yarn test && yarn cjs && yarn esm",
+    "prepack": "yarn cjs && yarn esm && yarn test",
     "cjs": "babel --out-dir build index.js",
     "esm": "ESM=1 babel --out-file build/index.esm.js index.js",
     "test": "babel-node test"
