@@ -11,7 +11,8 @@ Others:
 - `Router` will catch children `Route`'s change in runtime
 - esm module build added
 - `@babel/runtime` instead of built-in helper functions 
-- building with `babel@7` and `preset-env` 
+- building with `babel@7` and `preset-env`
+- speed up route matching by pre-creating regexp's
 
 ### 2.0.0
 
