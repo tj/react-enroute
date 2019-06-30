@@ -8,6 +8,7 @@ for update details (2.x and 3.x). One noticeable change is removed wildcard
 asterisk (`*`) -- use `(.*)` instead.
 
 Others:
+- `Router` will catch children `Route`'s change in runtime
 - esm module build added
 - `@babel/runtime` instead of built-in helper functions 
 - building with `babel@7` and `preset-env` 
