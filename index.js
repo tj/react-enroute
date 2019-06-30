@@ -113,9 +113,8 @@ function cleanPath(path) {
  */
 
 function renderMatch(routes, location) {
-  routes = Object.values(routes)
-
-  for (const route of routes) {
+  for (const path in routes) {
+    const route = routes[path]
     const params = match(route, location)
     if (!params) continue
 
