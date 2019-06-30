@@ -5,9 +5,13 @@
   "description": "Small react router",
   "author": "TJ Holowaychuk <tj@tjholowaychuk.com>",
   "main": "build/index.js",
+  "module": "build/index.esm.js",
   "license": "MIT",
   "scripts": {
-    "prepublish": "make build"
+    "prepack": "yarn test && yarn cjs && yarn esm",
+    "cjs": "babel --out-dir build index.js",
+    "esm": "ESM=1 babel --out-file build/index.esm.js index.js",
+    "test": "babel-node test"
   },
   "keywords": [
     "react",
@@ -17,20 +21,22 @@
     "enroute",
     "small"
   ],
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-fatigue-dev": "github:tj/react-fatigue-dev"
+    "react-dom": "^16.2.0"
   },
   "files": [
     "build"
   ],
   "dependencies": {
+    "@babel/runtime": "^7.4.5",
     "path-to-regexp": "^3.0.0"
   },
   "peerDependencies": {
