@@ -63,26 +63,6 @@ ReactDOM.render(<Router {...state}>
 </Router>, document.querySelector('#app'))
 ```
 
-## Developing
-
-Build:
-
-```
-$ make build
-```
-
-Start dev server:
-
-```
-$ make start
-```
-
-Running tests:
-
-```
-$ make test
-```
-
 ## Badges
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
