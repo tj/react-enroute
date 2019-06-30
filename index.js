@@ -1,60 +1,15 @@
-import React, {Component} from 'react'
+import {createElement, useMemo, Children} from 'react'
 import pathToRegexp from 'path-to-regexp'
 
 /**
  * Router routes things.
  */
 
-export class Router extends Component {
-  routes = {}
+export function Router({children, location, ...props}) {
+  assert(location, 'Router "location" property is missing')
 
-  /**
-   * Initialize the router.
-   */
-
-  constructor(props) {
-    super(props)
-    this.addRoutes(props.children)
-  }
-
-  /**
-   * Add routes.
-   */
-
-  addRoutes(routes, parent) {
-    React.Children.forEach(routes, r => this.addRoute(r, parent))
-  }
-
-  /**
-   * Add route.
-   */
-
-  addRoute(el, parent) {
-    const {path, component, children, ...routeProps} = el.props
-    assert(component, `Route ${context(el.props)}is missing the "component" property`)
-
-    const render = (params, renderProps) => {
-      const finalProps = {...this.props, ...routeProps, ...renderProps, params}
-      const children = React.createElement(component, finalProps)
-      return parent ? parent.render(params, {children}) : children
-    }
-
-    const route = createRoute(path, parent, render)
-    this.routes[route.path] = route
-
-    if (children) this.addRoutes(children, route)
-  }
-
-  /**
-   * Render the matching route.
-   */
-
-  render() {
-    const {location} = this.props
-    assert(location, `Router "location" property is missing`)
-
-    return renderMatch(this.routes, location)
-  }
+  const routes = useMemo(() => addRoutes(children, props), [children])
+  return renderMatch(routes, location)
 }
 
 /**
@@ -65,14 +20,28 @@ export function Route() {
   assert(false, 'Route should not be rendered')
 }
 
-/**
- * Context string for route errors based on the props available.
- */
+function addRoutes(nested, routerProps, parentRoute, routes = {}) {
+  Children.forEach(nested, el => {
+    const {path, component, children, ...routeProps} = el.props
+    assert(component, `Route "component" property is missing for path "${path}"`)
 
-function context({path, component}) {
-  if (path) return `with path "${path}" `
-  if (component) return `with component ${component.name} `
-  return ''
+    const render = (params, renderProps) => {
+      const finalProps = {...routerProps, ...routeProps, ...renderProps, params}
+      const children = createElement(component, finalProps)
+
+      return parentRoute
+        ? parentRoute.render(params, {children})
+        : children
+    }
+
+    const route = createRoute(path, parentRoute, render)
+    routes[route.path] = route
+
+    if (!children) return
+    addRoutes(children, routerProps, route, routes)
+  })
+
+  return routes
 }
 
 /**
@@ -91,11 +60,11 @@ function createRoute(path, parent, render) {
  * Normalize path based on the parent.
  */
 
-function normalizePath(path, parent) {
-  if (!path) return parent ? parent.path : '/'
+function normalizePath(path, parentRoute) {
+  if (!path) return parentRoute ? parentRoute.path : '/'
   if (path[0] === '/') return path  // "/" signifies an absolute route
-  if (parent == null) return path  // no need for a join
-  return `${parent.path}/${path}` // join
+  if (parentRoute == null) return path  // no need for a join
+  return `${parentRoute.path}/${path}` // join
 }
 
 /**
@@ -118,7 +87,7 @@ function renderMatch(routes, location) {
     const params = match(route, location)
     if (!params) continue
 
-    return route.render(params, {children: null})
+    return route.render(params)
   }
 
   return null

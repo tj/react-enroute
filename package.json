@@ -29,8 +29,8 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "files": [
     "build"
@@ -40,6 +40,6 @@
     "path-to-regexp": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+    "react": ">= 16.8"
   }
 }
