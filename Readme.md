@@ -7,6 +7,12 @@
 
 ## Installation
 
+```
+ $ yarn add react-enroute
+ ```
+
+or
+
  ```
  $ npm install react-enroute
  ```
