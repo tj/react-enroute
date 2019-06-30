@@ -22,7 +22,7 @@ ReactDOM.render(<Router {...state}>
   <Route path="/users/:id" component={User} />
   <Route path="/pets" component={Pets} />
   <Route path="/pets/:id" component={Pet} />
-  <Route path="*" component={NotFound} />
+  <Route path="(.*)" component={NotFound} />
 </Router>, document.querySelector('#app'))
 ```
 
@@ -41,7 +41,7 @@ ReactDOM.render(<Router {...state}>
     <Route path=":id" component={Pet} />
   </Route>
 
-  <Route path="*" component={NotFound} />
+  <Route path="(.*)" component={NotFound} />
 </Router>, document.querySelector('#app'))
 ```
 
@@ -59,7 +59,7 @@ ReactDOM.render(<Router {...state}>
     </Route>
   </Route>
 
-  <Route path="*" component={NotFound} />
+  <Route path="(.*)" component={NotFound} />
 </Router>, document.querySelector('#app'))
 ```
 
