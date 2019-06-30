@@ -31,7 +31,7 @@
     "build"
   ],
   "dependencies": {
-    "enroute": "^1.0.1"
+    "path-to-regexp": "^3.0.0"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"

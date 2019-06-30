@@ -103,7 +103,7 @@ assert(<Router location="/something">
     </Route>
   </Route>
 
-  <Route path="*" component={NotFound} />
+  <Route path="(.*)" component={NotFound} />
 </Router>, <NotFound />)
 
 // Nested route but index route
