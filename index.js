@@ -48,8 +48,8 @@ function addRoutes(nested, routerProps, parentRoute, routes = {}) {
  * Create route.
  */
 
-function createRoute(path, parent, render) {
-  path = cleanPath(normalizePath(path, parent))
+function createRoute(path, parentRoute, render) {
+  path = cleanPath(normalizePath(path, parentRoute))
 
   const route = {path, render, params: []}
   route.regexp = pathToRegexp(path, route.params)
