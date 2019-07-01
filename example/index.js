@@ -147,7 +147,7 @@ window.addEventListener('popstate', e => {
   //     <Route path=":id" component={Pet} />
   //   </Route>
   //
-  //   <Route path="*" component={NotFound} />
+  //   <Route path="(.*)" component={NotFound} />
   // </Router>, document.querySelector('#app'))
 // }
 
@@ -163,7 +163,7 @@ function render(state) {
       </Route>
     </Route>
 
-    <Route path="*" component={NotFound} />
+    <Route path="(.*)" component={NotFound} />
   </Router>, document.querySelector('#app'))
 }
 
@@ -174,7 +174,7 @@ function render(state) {
 //     <Route path="/users/:id" component={User} />
 //     <Route path="/pets" component={Pets} />
 //     <Route path="/pets/:id" component={Pet} />
-//     <Route path="*" component={NotFound} />
+//     <Route path="(.*)" component={NotFound} />
 //   </Router>, document.querySelector('#app'))
 // }
 
