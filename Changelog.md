@@ -1,3 +1,7 @@
+### 3.0.2
+
+- pass `location` property to component
+
 ### 3.0.1
 
 - back to old behaviour with static routes to prevent reinitialization at
