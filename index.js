@@ -8,8 +8,8 @@ import pathToRegexp from 'path-to-regexp'
 export function Router({children, location, ...props}) {
   assert(location, 'Router "location" property is missing')
 
-  const routes = useMemo(() => addRoutes(children, props), [children])
-  return renderMatch(routes, location)
+  const routes = useMemo(() => addRoutes(children), [children])
+  return renderMatch(routes, location, props)
 }
 
 /**
@@ -20,25 +20,25 @@ export function Route() {
   assert(false, 'Route should not be rendered')
 }
 
-function addRoutes(nested, routerProps, parentRoute, routes = {}) {
+function addRoutes(nested, parentRoute, routes = {}) {
   Children.forEach(nested, el => {
     const {path, component, children, ...routeProps} = el.props
     assert(component, `Route "component" property is missing for path "${path}"`)
 
-    const render = (params, renderProps) => {
-      const finalProps = {...routerProps, ...routeProps, ...renderProps, params}
-      const children = createElement(component, finalProps)
+    const render = (params, routerProps, children) => {
+      const finalProps = {...routerProps, ...routeProps, children, params}
+      const node = createElement(component, finalProps)
 
       return parentRoute
-        ? parentRoute.render(params, {children})
-        : children
+        ? parentRoute.render(params, routerProps, node)
+        : node
     }
 
     const route = createRoute(path, parentRoute, render)
     routes[route.path] = route
 
     if (!children) return
-    addRoutes(children, routerProps, route, routes)
+    addRoutes(children, route, routes)
   })
 
   return routes
@@ -81,13 +81,13 @@ function cleanPath(path) {
  * Render match route.
  */
 
-function renderMatch(routes, location) {
+function renderMatch(routes, location, routerProps) {
   for (const path in routes) {
     const route = routes[path]
     const params = match(route, location)
     if (!params) continue
 
-    return route.render(params)
+    return route.render(params, routerProps)
   }
 
   return null
