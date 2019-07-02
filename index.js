@@ -8,7 +8,7 @@ import pathToRegexp from 'path-to-regexp'
 export function Router({children, location, ...props}) {
   assert(location, 'Router "location" property is missing')
 
-  const routes = useMemo(() => addRoutes(children), [children])
+  const routes = useMemo(() => addRoutes(children), [])
   return renderMatch(routes, location, props)
 }
 
