@@ -11,7 +11,8 @@
     "prepack": "yarn cjs && yarn esm && yarn test",
     "cjs": "babel --out-dir build index.js",
     "esm": "ESM=1 babel --out-file build/index.esm.js index.js",
-    "test": "babel-node test"
+    "test": "babel-node test",
+    "serve": "webpack-dev-server --config example/webpack.config.js"
   },
   "keywords": [
     "react",
@@ -28,8 +29,12 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
   },
   "files": [
     "build"
