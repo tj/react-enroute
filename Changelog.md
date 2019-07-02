@@ -1,3 +1,10 @@
+### 3.0.1
+
+- back to old behaviour with static routes to prevent reinitialization at
+any router render
+- fix old router props passed to render
+- example update
+
 ### 3.0.0
 
 Major changes:
