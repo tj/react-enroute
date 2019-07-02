@@ -5,11 +5,11 @@ import pathToRegexp from 'path-to-regexp'
  * Router routes things.
  */
 
-export function Router({children, location, ...props}) {
-  assert(location, 'Router "location" property is missing')
+export function Router({children, ...props}) {
+  assert(props.location, 'Router "location" property is missing')
 
   const routes = useMemo(() => addRoutes(children), [])
-  return renderMatch(routes, location, props)
+  return renderMatch(routes, props)
 }
 
 /**
@@ -81,10 +81,10 @@ function cleanPath(path) {
  * Render match route.
  */
 
-function renderMatch(routes, location, routerProps) {
+function renderMatch(routes, routerProps) {
   for (const path in routes) {
     const route = routes[path]
-    const params = match(route, location)
+    const params = match(route, routerProps.location)
     if (!params) continue
 
     return route.render(params, routerProps)
