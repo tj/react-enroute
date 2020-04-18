@@ -1,5 +1,5 @@
 import {createElement, useMemo, Children} from 'react'
-import pathToRegexp from 'path-to-regexp'
+import {pathToRegexp} from 'path-to-regexp'
 
 /**
  * Router routes things.
