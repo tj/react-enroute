@@ -46,6 +46,7 @@
   "files": [
     "src",
     "esm",
-    "cjs"
+    "cjs",
+    "index.d.ts"
   ]
 }
