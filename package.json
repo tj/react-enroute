@@ -9,7 +9,7 @@
   "module": "esm",
   "react-native": "src",
   "scripts": {
-    "prepack": "yarn clean && yarn cjs && yarn esm && yarn test",
+    "prepack": "yarn clean && yarn cjs && yarn esm && yarn test && size-limit",
     "cjs": "babel --out-dir cjs src",
     "esm": "ESM=1 babel --out-dir esm src",
     "clean": "rm -rf cjs esm",
@@ -36,9 +36,11 @@
     "@babel/node": "^7.8.7",
     "@babel/plugin-transform-react-jsx": "^7.9.4",
     "@babel/preset-env": "^7.9.5",
+    "@size-limit/preset-small-lib": "^4.4.5",
     "babel-loader": "^8.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "size-limit": "^4.4.5",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
@@ -48,5 +50,12 @@
     "esm",
     "cjs",
     "index.d.ts"
+  ],
+  "size-limit": [
+    {
+      "path": "esm",
+      "import": "{Router, loc, isPath, findPath, findPathValue}",
+      "limit": "2.2 KB"
+    }
   ]
 }
