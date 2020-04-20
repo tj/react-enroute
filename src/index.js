@@ -1,6 +1,8 @@
 import {cloneElement, Children} from 'react'
-import {match} from 'path-to-regexp'
+import {findByLocation} from './utils'
 
+
+export {genLocation, loc, isPath, findByLocation} from './utils'
 
 export function Router({
   location,
@@ -26,6 +28,7 @@ function addRoutes(elements, parent, routes = {}) {
 function createRoute(element, parent) {
   let path = fullPath(element.props.path, parent)
   path = cleanPath(path)
+
   return {path, parent, element}
 }
 
@@ -41,15 +44,9 @@ function cleanPath(path) {
 }
 
 function renderMatch(routes, location, options) {
-  for (const path in routes) {
-    const result = match(path, options)(location)
-    if (!result) continue
+  const result = findByLocation(routes, location, options)
 
-    const route = routes[path]
-    return render(route, result.params)
-  }
-
-  return null
+  return result ? render(result.value, result.params) : null
 }
 
 function render(route, params, children) {

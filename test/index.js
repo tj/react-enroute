@@ -1,7 +1,7 @@
-import {equal} from 'assert'
+import {equal, deepEqual} from 'assert'
 import React from 'react'
 import {renderToStaticMarkup} from 'react-dom/server'
-import {Router} from '..'
+import {Router, loc, isPath, findByLocation} from '..'
 
 
 function Index({children}) {
@@ -49,7 +49,7 @@ function List({items}) {
 }
 
 
-assert(
+assertJSX(
   "No location",
 
   <Router location='/s'>
@@ -59,7 +59,7 @@ assert(
   null,
 )
 
-assert(
+assertJSX(
   "Simple index route",
 
   <Router location='/'>
@@ -69,7 +69,7 @@ assert(
   <Index/>,
 )
 
-assert(
+assertJSX(
   "Nested route",
 
   <Router location='/pets'>
@@ -83,7 +83,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Route props",
 
   <Router location='/list'>
@@ -93,7 +93,7 @@ assert(
   <List items={['foo', 'bar', 'baz']}/>,
 )
 
-assert(
+assertJSX(
   "Deeply nested route",
 
   <Router location='/pets/12'>
@@ -111,7 +111,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Deeply nested route with path part ends with '/'",
 
   <Router location='/pets/12'>
@@ -129,7 +129,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Many deeply nested route",
 
   <Router location='/users/5'>
@@ -150,7 +150,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Catch-all",
 
   <Router location='/something'>
@@ -170,7 +170,7 @@ assert(
   <NotFound/>,
 )
 
-assert(
+assertJSX(
   "Nested route but index route",
 
   <Router location='/'>
@@ -182,7 +182,7 @@ assert(
   <Index/>,
 )
 
-assert(
+assertJSX(
   "Shallow routes 1",
 
   <Router location='/'>
@@ -193,7 +193,7 @@ assert(
   <Index/>,
 )
 
-assert(
+assertJSX(
   "Shallow routes 2",
 
   <Router location='/users'>
@@ -204,7 +204,7 @@ assert(
   <Users/>,
 )
 
-assert(
+assertJSX(
   "Shallow routes 3",
 
   <Router location='/users/5'>
@@ -216,7 +216,7 @@ assert(
   <User userId={5}/>,
 )
 
-assert(
+assertJSX(
   "Many nested routes and params",
 
   <Router location='/users/5/pets/2'>
@@ -242,7 +242,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Nested index route with path '/'",
 
   <Router location='/'>
@@ -256,7 +256,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Several nested index routes",
 
   <Router location='/'>
@@ -270,7 +270,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Param overrides route property",
 
   <Router location='/pets/12'>
@@ -288,7 +288,7 @@ assert(
   </Index>,
 )
 
-assert(
+assertJSX(
   "Options",
 
   <Router location='/pets/12/' options={{strict: true}}>
@@ -303,7 +303,36 @@ assert(
   <NotFound/>,
 )
 
+assert(
+  "genLocation",
+  loc('/users/:id', {id: '42'}),
+  '/users/42',
+)
+
+assert(
+  "isPath",
+  isPath('/users/:id', '/users/42'),
+  true,
+)
+
+assert(
+  "findByPath",
+  findByLocation({
+    '/users': 'user-list',
+    '/users/:id': 'user',
+  }, '/users/42'),
+  {
+    path: '/users/:id',
+    value: 'user',
+    params: {id: '42'},
+  }
+)
+
 function assert(test, actual, expected) {
+  deepEqual(actual, expected, test)
+}
+
+function assertJSX(test, actual, expected) {
   actual = renderToStaticMarkup(actual)
   expected = renderToStaticMarkup(expected)
   equal(actual, expected, test)
