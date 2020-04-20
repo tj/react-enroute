@@ -4,10 +4,10 @@
   "repository": "tj/react-enroute",
   "description": "Small react router",
   "author": "TJ Holowaychuk <tj@tjholowaychuk.com>",
+  "license": "MIT",
   "main": "cjs",
   "module": "esm",
   "react-native": "src",
-  "license": "MIT",
   "scripts": {
     "prepack": "yarn clean && yarn cjs && yarn esm && yarn test",
     "cjs": "babel --out-dir cjs src",
@@ -24,6 +24,12 @@
     "enroute",
     "small"
   ],
+  "dependencies": {
+    "path-to-regexp": "^6.1.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
@@ -41,11 +47,5 @@
     "src",
     "esm",
     "cjs"
-  ],
-  "dependencies": {
-    "path-to-regexp": "^6.1.0"
-  },
-  "peerDependencies": {
-    "react": ">= 16.8"
-  }
+  ]
 }
