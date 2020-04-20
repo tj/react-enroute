@@ -1,4 +1,5 @@
-build
+esm
+cjs
 node_modules
 example/bundle.js
 .DS_Store

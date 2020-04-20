@@ -4,13 +4,15 @@
   "repository": "tj/react-enroute",
   "description": "Small react router",
   "author": "TJ Holowaychuk <tj@tjholowaychuk.com>",
-  "main": "build/index.js",
-  "module": "build/index.esm.js",
+  "main": "cjs",
+  "module": "esm",
+  "react-native": "src",
   "license": "MIT",
   "scripts": {
-    "prepack": "yarn cjs && yarn esm && yarn test",
-    "cjs": "babel --out-dir build index.js",
-    "esm": "ESM=1 babel --out-file build/index.esm.js index.js",
+    "prepack": "yarn clean && yarn cjs && yarn esm && yarn test",
+    "cjs": "babel --out-dir cjs src",
+    "esm": "ESM=1 babel --out-dir esm src",
+    "clean": "rm -rf cjs esm",
     "test": "babel-node test",
     "serve": "webpack-dev-server --config example/webpack.config.js"
   },
@@ -36,7 +38,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "files": [
-    "build"
+    "src",
+    "esm",
+    "cjs"
   ],
   "dependencies": {
     "path-to-regexp": "^6.1.0"
