@@ -37,7 +37,7 @@ export declare type SearchResult = {
   params: object[],
 }
 
-export declare function findByLocation(
+export declare function findPathValue(
   obj: object,
   location: string,
   options?: ParseOptions & TokensToRegexpOptions & RegexpToFunctionOptions,

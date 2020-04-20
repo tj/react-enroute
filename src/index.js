@@ -1,8 +1,8 @@
 import {cloneElement, Children} from 'react'
-import {findByLocation} from './utils'
+import {findPathValue} from './utils'
 
 
-export {genLocation, loc, isPath, findByLocation} from './utils'
+export {genLocation, loc, isPath, findPathValue} from './utils'
 
 export function Router({
   location,
@@ -44,7 +44,7 @@ function cleanPath(path) {
 }
 
 function renderMatch(routes, location, options) {
-  const result = findByLocation(routes, location, options)
+  const result = findPathValue(routes, location, options)
 
   return result ? render(result.value, result.params) : null
 }

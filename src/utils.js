@@ -38,7 +38,7 @@ export function isPath(path, location, options) {
 /**
  * Search over object whose keys are paths
  *
- * findByLocation({
+ * findPathValue({
  *   '/users': UserListToolbar,
  *   '/users/:id': UserToolbar,
  * }, '/users/42')
@@ -59,7 +59,7 @@ export function isPath(path, location, options) {
  * @return {Result|undefined}
  */
 
-export function findByLocation(obj, location, options) {
+export function findPathValue(obj, location, options) {
   for (const path in obj) {
     const result = match(path, options)(location)
     if (!result) continue
