@@ -1,9 +1,17 @@
-
 # react-enroute
 
- Simple React router with a small footprint for modern browsers. This package is not meant to be a drop-in replacement for react-router, just a smaller simpler alternative.
+Simple React router with a small footprint for modern browsers.
+This package is not meant to be a drop-in replacement for react-router,
+just a smaller simpler alternative.
 
- See [path-to-regexp](https://github.com/pillarjs/path-to-regexp) for path matching, this is the same library used by Express.
+See [path-to-regexp readme](https://github.com/pillarjs/path-to-regexp#usage)
+for matching pattern rules and options. Keep in mind location and params will
+not be automatically encoded/decoded. Check
+[encode and decode options](https://github.com/pillarjs/path-to-regexp#match)
+if you need it.
+
+Library size limited to **2.2 KB** (all dependencies, minified and gzipped) with
+the help of [Size Limit](https://github.com/ai/size-limit). 
 
 ## Installation
 
@@ -17,56 +25,85 @@ or
  $ npm install react-enroute
  ```
 
-## Examples
+## Usage
 
 No nesting:
 
 ```js
-ReactDOM.render(<Router {...state}>
-  <Route path="/" component={Index} />
-  <Route path="/users" component={Users} />
-  <Route path="/users/:id" component={User} />
-  <Route path="/pets" component={Pets} />
-  <Route path="/pets/:id" component={Pet} />
-  <Route path="(.*)" component={NotFound} />
-</Router>, document.querySelector('#app'))
+<Router location='/pets/42'>
+  <Index/>
+  <Users path='/users'/>
+  <User path='/users/:id'/>
+  <Pets path='/pets'/>
+  <Pet path='/pets/:id'/>
+  <NotFound path='(.*)'/>
+</Router>
 ```
 
-Some nesting:
+Nesting and options:
 
 ```js
-ReactDOM.render(<Router {...state}>
-  <Route component={Index} />
+<Router location='/users/caf%C3%A9' options={{decode: decodeURIComponent}}>
+  <Index>
+    <Users path='users'>
+      <AllUsers/>
+      <User path=':id'/>
+    </Users>
 
-  <Route path="/users" component={Users}>
-    <Route path=":id" component={User} />
-  </Route>
+    <Pets path='pets'>
+      <Pet path=':id'/>
+    </Pets>
+  </Index>
 
-  <Route path="/pets" component={PetsContainer}>
-    <Route component={Pets} />
-    <Route path=":id" component={Pet} />
-  </Route>
-
-  <Route path="(.*)" component={NotFound} />
-</Router>, document.querySelector('#app'))
+  <NotFound path='(.*)'/>
+</Router>
 ```
 
-Moar nesting:
+## Utils
+
+### genLocation (alias: loc)
+
+Generate location based on a path and params.
 
 ```js
-ReactDOM.render(<Router {...state}>
-  <Route path="/" component={Index}>
-    <Route path="users" component={Users}>
-      <Route path=":id" component={User} />
-    </Route>
+genLocation('/users/:id', {id: '42'}) // => '/users/42'
+loc('/pets/:id', {id: '123'}) // => '/pets/123'
+```
 
-    <Route path="pets" component={Pets}>
-      <Route path=":id" component={Pet} />
-    </Route>
-  </Route>
+### isPath
 
-  <Route path="(.*)" component={NotFound} />
-</Router>, document.querySelector('#app'))
+Check if location matches path.
+
+```js
+isPath('/users/:id', '/users/42') // => true
+```
+
+### findPath
+
+Search path.
+
+```js
+findPath(['/users', '/users/:id'], '/users/42')
+/* => {
+  path: '/users/:id',
+  params: {id: '42'},
+} */
+```
+
+### findPathValue
+
+Search over object whose keys are paths.
+
+```js
+findPathValue({
+ '/users': UserListToolbar,
+ '/users/:id': UserToolbar,
+}, '/users/42')
+/* => {
+ path: '/users/:id',
+ value: UserToolbar,
+ params: {id: '42'},
+} */
 ```
 
 ## Badges
