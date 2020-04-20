@@ -56,7 +56,7 @@ export function isPath(path, location, options) {
  * @param {object} obj - keys are paths and values can be any
  * @param {string} location
  * @param {object=} options - [path-to-regexp](https://github.com/pillarjs/path-to-regexp#usage) options
- * @return {Result}
+ * @return {Result|undefined}
  */
 
 export function findByLocation(obj, location, options) {
