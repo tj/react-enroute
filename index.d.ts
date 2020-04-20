@@ -33,6 +33,17 @@ export declare function isPath(
 
 export declare type SearchResult = {
   path: string,
+  params: object[],
+}
+
+export declare function findPath(
+  paths: string[],
+  location: string,
+  options?: ParseOptions & TokensToRegexpOptions & RegexpToFunctionOptions,
+): SearchResult|void
+
+export declare type SearchValueResult = {
+  path: string,
   value: any,
   params: object[],
 }
@@ -41,4 +52,4 @@ export declare function findPathValue(
   obj: object,
   location: string,
   options?: ParseOptions & TokensToRegexpOptions & RegexpToFunctionOptions,
-): SearchResult|void
+): SearchValueResult|void

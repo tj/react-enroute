@@ -36,6 +36,35 @@ export function isPath(path, location, options) {
 }
 
 /**
+ * Search path
+ *
+ * findPath(['/users', '/users/:id'], '/users/42') => {
+ *   path: '/users/:id,
+ *   params: {id: '42'},
+ * }
+ *
+ * @typedef SearchResult
+ * @property {string} path
+ * @property {object} params
+ *
+ * @param {[string]} paths
+ * @param {string} location
+ * @param {object} options - [path-to-regexp](https://github.com/pillarjs/path-to-regexp#usage) options
+ * @return {SearchResult|undefined}
+ */
+
+export function findPath(paths, location, options) {
+  for (let i = 0; i < paths.length; i++) {
+    const path = paths[i]
+    const result = match(path, options)(location)
+    if (!result) continue
+
+    const {params} = result
+    return {path, params}
+  }
+}
+
+/**
  * Search over object whose keys are paths
  *
  * findPathValue({
@@ -48,7 +77,7 @@ export function isPath(path, location, options) {
  *   params: {id: '42'},
  * }
  *
- * @typedef Result
+ * @typedef SearchValueResult
  * @property {string} path
  * @property {*} value
  * @property {object} params
@@ -56,7 +85,7 @@ export function isPath(path, location, options) {
  * @param {object} obj - keys are paths and values can be any
  * @param {string} location
  * @param {object=} options - [path-to-regexp](https://github.com/pillarjs/path-to-regexp#usage) options
- * @return {Result|undefined}
+ * @return {SearchValueResult|undefined}
  */
 
 export function findPathValue(obj, location, options) {

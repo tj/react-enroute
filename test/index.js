@@ -1,7 +1,7 @@
 import {equal, deepEqual} from 'assert'
 import React from 'react'
 import {renderToStaticMarkup} from 'react-dom/server'
-import {Router, loc, isPath, findPathValue} from '..'
+import {Router, loc, isPath, findPath, findPathValue} from '..'
 
 
 function Index({children}) {
@@ -313,6 +313,15 @@ assert(
   "isPath",
   isPath('/users/:id', '/users/42'),
   true,
+)
+
+assert(
+  "findPath",
+  findPath(['/users', '/users/:id'], '/users/42'),
+  {
+    path: '/users/:id',
+    params: {id: '42'},
+  }
 )
 
 assert(

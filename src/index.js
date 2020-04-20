@@ -2,7 +2,7 @@ import {cloneElement, Children} from 'react'
 import {findPathValue} from './utils'
 
 
-export {genLocation, loc, isPath, findPathValue} from './utils'
+export {genLocation, loc, isPath, findPath, findPathValue} from './utils'
 
 export function Router({
   location,
