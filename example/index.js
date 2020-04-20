@@ -1,16 +1,33 @@
-import React, {createContext, useState, useEffect, useCallback, useContext} from 'react'
-import ReactDOM from 'react-dom'
-import {Router, Route} from '../index'
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+  useMemo,
+} from 'react'
+import {render} from 'react-dom'
+import {Router} from '..'
 
-// note this is just an example, this package does not provide
-// a Link equivalent found in react-router, nor does it provide
-// bindings for tools like Redux. You'll need to wire these up
-// as desired.
 
-const navigateContext = createContext()
+const storeContext = createContext()
+const Data = {
+  users: {
+    1: {id: '1', name: 'Bob', pets: ['1', '2', '3']},
+    2: {id: '2', name: 'Joe', pets: ['4', '5']},
+  },
+  pets: {
+    1: {id: '1', name: 'Tobi', species: 'Ferret'},
+    2: {id: '2', name: 'Loki', species: 'Ferret'},
+    3: {id: '3', name: 'Jane', species: 'Ferret'},
+    4: {id: '4', name: 'Manny', species: 'Cat'},
+    5: {id: '5', name: 'Luna', species: 'Cat'},
+  },
+}
+
 
 function Link({to, children}) {
-  const navigate = useContext(navigateContext)
+  const {navigate} = useContext(storeContext)
 
   const click = useCallback(e => {
     e.preventDefault()
@@ -22,20 +39,23 @@ function Link({to, children}) {
   </a>
 }
 
-function Index({children}) {
+function Index({children, location}) {
   return <div>
     <h1>Pet List</h1>
     <p>At least it is not a to-do list. Check out <Link
-      to="/users">users</Link> or <Link to="/pets">pets</Link>.</p>
+      to='/users'>users</Link> or <Link to='/pets'>pets</Link>.</p>
+    <p>Current location is {location}</p>
     {children}
   </div>
 }
 
-function Users({users, children}) {
+function Users({children}) {
+  const {users} = useContext(storeContext)
+
   return <div>
     <h2>Users</h2>
     <ul>
-      {users.map(user => {
+      {Object.values(users).map(user => {
         return <li key={user.id}>
           <Link to={`/users/${user.id}`}>{user.name}</Link>
         </li>
@@ -45,11 +65,15 @@ function Users({users, children}) {
   </div>
 }
 
-function User({user, pets}) {
+function User({id}) {
+  const {users, pets} = useContext(storeContext)
+  const user = users[id]
+  const userPets = user.pets.map(id => pets[id])
+
   return <div>
-    <p>{user.name} has {pets.length} pets:</p>
+    <p>{user.name} has {userPets.length} pets:</p>
     <ul>
-      {pets.map(pet => {
+      {userPets.map(pet => {
         return <li key={pet.id}>
           <Link to={`/pets/${pet.id}`}>{pet.name}</Link>
         </li>
@@ -58,20 +82,13 @@ function User({user, pets}) {
   </div>
 }
 
-User = (fn => {
-  return ({users, pets, params: {id}}) => {
-    return fn({
-      user: users.filter(u => u.id === id)[0],
-      pets: pets.filter(p => p.user_id === id),
-    })
-  }
-})(User)
+function Pets({children}) {
+  const {pets} = useContext(storeContext)
 
-function Pets({pets, children}) {
   return <div>
     <h2>Pets</h2>
     <ul>
-      {pets.map(pet => {
+      {Object.values(pets).map(pet => {
         return <li key={pet.id}>
           <Link to={`/pets/${pet.id}`}>{pet.name}</Link>
         </li>
@@ -81,66 +98,53 @@ function Pets({pets, children}) {
   </div>
 }
 
-function Pet({user, pet}) {
+function Pet({id}) {
+  const {users, pets} = useContext(storeContext)
+  const pet = pets[id]
+  const user = Object.values(users)
+    .find(user => user.pets.includes(id))
+
   return <p>{pet.name} is a {pet.species} and is owned by <Link
     to={`/users/${user.id}`}>{user.name}</Link>.</p>
 }
-
-Pet = (fn => {
-  return ({users, pets, params: {id}}) => {
-    const pet = pets.filter(p => p.id === id)[0]
-    const user = users.filter(u => u.id === pet.user_id)[0]
-    return fn({user, pet})
-  }
-})(Pet)
 
 function NotFound() {
   return <p>404 Not Found</p>
 }
 
-const Data = {
-  users: [
-    {id: '1', name: 'Bob'},
-    {id: '2', name: 'Joe'},
-  ],
-  pets: [
-    {id: '1', user_id: '1', name: 'Tobi', species: 'Ferret'},
-    {id: '2', user_id: '1', name: 'Loki', species: 'Ferret'},
-    {id: '3', user_id: '1', name: 'Jane', species: 'Ferret'},
-    {id: '4', user_id: '2', name: 'Manny', species: 'Cat'},
-    {id: '5', user_id: '2', name: 'Luna', species: 'Cat'},
-  ],
-}
-
 function App() {
   const [location, setLocation] = useState(window.location.pathname)
+
   const navigate = useCallback(path => {
-    history.pushState(null, "", path)
+    history.pushState(null, '', path)
     setLocation(path)
   }, [])
+
   useEffect(() => {
     window.addEventListener('popstate', () => {
       setLocation(window.location.pathname)
     })
   }, [])
 
+  const store = useMemo(() => ({navigate, ...Data}), [])
+
   return (
-    <navigateContext.Provider value={navigate}>
-      <Router {...{location}} {...Data}>
-        <Route path="/" component={Index}>
-          <Route path="users" component={Users}>
-            <Route path=":id" component={User}/>
-          </Route>
+    <storeContext.Provider value={store}>
+      <Router {...{location}}>
+        <Index {...{location}}>
+          <Users path='users'>
+            <User path=':id'/>
+          </Users>
 
-          <Route path="pets" component={Pets}>
-            <Route path=":id" component={Pet}/>
-          </Route>
-        </Route>
+          <Pets path='pets'>
+            <Pet path=':id'/>
+          </Pets>
+        </Index>
 
-        <Route path="(.*)" component={NotFound}/>
+        <NotFound path='(.*)'/>
       </Router>
-    </navigateContext.Provider>
+    </storeContext.Provider>
   )
 }
 
-ReactDOM.render(<App/>, document.querySelector('#app'))
+render(<App/>, document.querySelector('#app'))
