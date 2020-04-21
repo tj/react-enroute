@@ -303,6 +303,26 @@ assertJSX(
   <NotFound/>,
 )
 
+assertJSX(
+  "decode option",
+
+  <Router location='/users/caf%C3%A9' options={{decode: decodeURIComponent}}>
+    <User path='/users/:userId'/>
+  </Router>,
+
+  <User userId='café'/>,
+)
+
+assertJSX(
+  "encode option",
+
+  <Router location='/us%C3%A9rs/42' options={{encode: encodeURI}}>
+    <User path='/usérs/:userId'/>
+  </Router>,
+
+  <User userId='42'/>,
+)
+
 assert(
   "genLocation",
   loc('/users/:id', {id: '42'}),
