@@ -45,8 +45,9 @@ function cleanPath(path) {
 
 function renderMatch(routes, location, options) {
   const result = findPathValue(routes, location, options)
+  if (!result) return null
 
-  return result ? render(result.value, result.params) : null
+  return render(result.value, result.params)
 }
 
 function render(route, params, children) {
