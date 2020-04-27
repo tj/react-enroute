@@ -1,3 +1,7 @@
+### 4.0.1
+
+- sideEffects: false
+
 ### 4.0.0
 
 **Major changes:**
