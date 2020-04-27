@@ -15,13 +15,13 @@ export declare const Router: FunctionComponent<RouterProps>
 
 export declare function genLocation(
   path: string,
-  params: object,
+  params?: object,
   options?: ParseOptions & TokensToFunctionOptions,
 ): string
 
 export declare function loc(
   path: string,
-  params: object,
+  params?: object,
   options?: ParseOptions & TokensToFunctionOptions,
 ): string
 

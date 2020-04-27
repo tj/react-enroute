@@ -8,7 +8,7 @@ import {pathToRegexp, compile, match} from 'path-to-regexp'
  * genLocation('/users/:id', {id: '42'}) => '/users/42'
  *
  * @param {string} path
- * @param {object} params
+ * @param {object?} params
  * @param {object=} options - [path-to-regexp](https://github.com/pillarjs/path-to-regexp#usage) options
  * @return {string}
  */
