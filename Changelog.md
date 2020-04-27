@@ -1,3 +1,8 @@
+### 4.0.2
+
+- return `null` for empty and not defined location to prevent show catch-all
+route
+
 ### 4.0.1
 
 - sideEffects: false
