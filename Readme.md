@@ -43,17 +43,20 @@ No nesting:
 Nesting and options:
 
 ```js
-<Router location='/users/caf%C3%A9' options={{decode: decodeURIComponent}}>
-  <Index>
-    <Users path='users'>
-      <AllUsers/>
-      <User path=':id'/>
-    </Users>
+const RouterOptions = {decode: decodeURIComponent}
 
-    <Pets path='pets'>
-      <Pet path=':id'/>
-    </Pets>
-  </Index>
+<Router location='/users/caf%C3%A9' options={RouterOptions}>
+  <Main/>                     {/* / */}
+
+  <Users path='/users'>
+    <AllUsers/>               {/* /users */}
+    <User path=':id'/>        {/* /users/:id */}
+  </Users>
+    
+  <Pets path='/pets'>
+    <Pet path=':id'/>
+    <MyPets path='/my-pets'/> {/* absolute path */}
+  </Pets>
 
   <NotFound path='(.*)'/>
 </Router>
