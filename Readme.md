@@ -15,15 +15,15 @@ and gzipped) with the help of [Size Limit](https://github.com/ai/size-limit).
 
 ## Installation
 
+```console
+yarn add react-enroute
 ```
- $ yarn add react-enroute
- ```
 
 or
 
- ```
- $ npm install react-enroute
- ```
+```console
+npm install react-enroute
+```
 
 ## Usage
 
