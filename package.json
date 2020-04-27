@@ -8,6 +8,7 @@
   "main": "cjs",
   "module": "esm",
   "react-native": "src",
+  "sideEffects": false,
   "scripts": {
     "prepack": "yarn clean && yarn cjs && yarn esm && yarn test && size-limit",
     "cjs": "babel --out-dir cjs src",
