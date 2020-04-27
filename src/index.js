@@ -9,6 +9,8 @@ export function Router({
   options,
   children,
 }) {
+  if (!location) return null
+
   const routes = addRoutes(children)
   return renderMatch(routes, location, options)
 }

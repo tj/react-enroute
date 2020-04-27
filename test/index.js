@@ -323,6 +323,26 @@ assertJSX(
   <User userId='42'/>,
 )
 
+assertJSX(
+  "Empty and not defined location should render null",
+
+  <Router>
+    <NotFound path='(.*)'/>
+  </Router>,
+
+  null,
+)
+
+assertJSX(
+  "Non and empty location should render null",
+
+  <Router>
+    <NotFound path='(.*)'/>
+  </Router>,
+
+  null,
+)
+
 assert(
   "genLocation",
   loc('/users/:id', {id: '42'}),
