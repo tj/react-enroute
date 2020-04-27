@@ -55,8 +55,8 @@
   "size-limit": [
     {
       "path": "esm",
-      "import": "{Router, loc, isPath, findPath, findPathValue}",
-      "limit": "2.2 KB"
+      "import": "{Router}",
+      "limit": "1.8 KB"
     }
   ]
 }
