@@ -36,7 +36,7 @@ function createRoute(element, parent) {
 
 function fullPath(path, parent) {
   if (!path) return parent ? parent.path : '' // index route
-  if (!parent || path[0] === '/') return path // absolute or root
+  if (!parent || path[0] === '/') return path // root or absolute
   return parent.path + '/' + path
 }
 
