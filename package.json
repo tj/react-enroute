@@ -14,7 +14,7 @@
     "cjs": "babel --out-dir cjs src",
     "esm": "ESM=1 babel --out-dir esm src",
     "clean": "rm -rf cjs esm",
-    "test": "babel-node test",
+    "test": "NODE_ENV=production babel-node test",
     "serve": "webpack-dev-server --config example/webpack.config.js"
   },
   "keywords": [
