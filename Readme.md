@@ -46,16 +46,16 @@ Nesting and options:
 const RouterOptions = {decode: decodeURIComponent}
 
 <Router location='/users/caf%C3%A9' options={RouterOptions}>
-  <Main/>                     {/* / */}
+  <Main/>                     // '/'
 
   <Users path='/users'>
-    <AllUsers/>               {/* /users */}
-    <User path=':id'/>        {/* /users/:id */}
+    <AllUsers/>               // '/users'
+    <User path=':id'/>        // '/users/:id'
   </Users>
     
   <Pets path='/pets'>
     <Pet path=':id'/>
-    <MyPets path='/my-pets'/> {/* absolute path */}
+    <MyPets path='/my-pets'/> // absolute path
   </Pets>
 
   <NotFound path='(.*)'/>
