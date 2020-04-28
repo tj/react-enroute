@@ -10,8 +10,8 @@ not be automatically encoded/decoded. Check
 [encode and decode options](https://github.com/pillarjs/path-to-regexp#match)
 if you need it.
 
-Library size limited to **1.8 KB** (no utils, all dependencies, minified
-and gzipped) with the help of [Size Limit](https://github.com/ai/size-limit). 
+Library size limited to **1.8 KB** (no utils, all deps, minified and gzipped)
+with [Size Limit](https://github.com/ai/size-limit).
 
 ## Installation
 
@@ -67,6 +67,7 @@ from top to bottom, so more general rules coming first take precedence. You
 should put more concrete rules above catch-all.
 
 Right order:
+
 ```js
 <Route>
   <Users path='/users'>
