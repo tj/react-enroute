@@ -333,16 +333,6 @@ assertJSX(
   null,
 )
 
-assertJSX(
-  "Non and empty location should render null",
-
-  <Router>
-    <NotFound path='(.*)'/>
-  </Router>,
-
-  null,
-)
-
 function assertJSX(test, actual, expected) {
   actual = renderToStaticMarkup(actual)
   expected = renderToStaticMarkup(expected)
