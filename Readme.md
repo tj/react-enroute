@@ -80,6 +80,16 @@ Right order:
 
 Not found page (404) should be the last.
 
+Paths may not start with `/`, the name-based syntax is ok:
+
+```js
+<Router location='pets'>
+  <Index/>               // use '' or '/' for index location
+  <Users path='users'/>
+  <Pets path='pets'/>
+</Router>
+```
+
 ## Utils
 
 ### genLocation (alias: loc)
