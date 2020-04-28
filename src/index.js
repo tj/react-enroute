@@ -29,7 +29,7 @@ function addRoutes(elements, routes, parent) {
 
 function createRoute(element, parent) {
   const path = fullPath(element.props.path, parent)
-    .replace(/\/$/, '') // remove last slash
+    .replace(/\/$/, '') // remove trailing slash
 
   return {path, parent, element}
 }
