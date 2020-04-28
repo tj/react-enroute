@@ -70,21 +70,27 @@ assertJSX(
 )
 
 assertJSX(
-  "Deeply nested route with path part ends with '/'",
+  "Route with path part ends with '/'",
 
-  <Router location='/pets/12'>
-    <Index>
-      <Pets path='pets/'>
-        <Pet path=':petId'/>
-      </Pets>
-    </Index>
+  <Router location='/pets'>
+    <Pets path='/pets/'/>
   </Router>,
 
-  <Index>
-    <Pets>
-      <Pet petId={12}/>
+  <Pets/>,
+)
+
+assertJSX(
+  "Route with path part ends with '/' and child",
+
+  <Router location='/pets/12'>
+    <Pets path='pets/'>
+      <Pet path=':petId'/>
     </Pets>
-  </Index>,
+  </Router>,
+
+  <Pets>
+    <Pet petId={12}/>
+  </Pets>,
 )
 
 assertJSX(
