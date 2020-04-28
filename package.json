@@ -12,9 +12,9 @@
   "scripts": {
     "prepack": "yarn clean && yarn cjs && yarn esm && yarn test && size-limit",
     "cjs": "babel --out-dir cjs src",
-    "esm": "ESM=1 babel --out-dir esm src",
-    "clean": "rm -rf cjs esm",
-    "test": "NODE_ENV=production babel-node test",
+    "esm": "cross-env ESM=1 babel --out-dir esm src",
+    "clean": "rimraf cjs esm",
+    "test": "cross-env NODE_ENV=production babel-node test",
     "serve": "webpack-dev-server --config example/webpack.config.js"
   },
   "keywords": [
@@ -39,8 +39,10 @@
     "@babel/preset-env": "^7.9.5",
     "@size-limit/preset-small-lib": "^4.4.5",
     "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "rimraf": "^3.0.2",
     "size-limit": "^4.4.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
