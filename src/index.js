@@ -10,7 +10,7 @@ export function Router({
   options,
   children,
 }) {
-  if (!location) return null
+  if (location == null) return null
 
   const routes = addRoutes(children, {})
   return renderMatch(routes, location, options)
