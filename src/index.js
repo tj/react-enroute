@@ -1,5 +1,6 @@
 import {cloneElement, Children} from 'react'
 import {findPathValue} from './utils'
+import {warnNotFound} from './debug'
 
 
 export {genLocation, loc, isPath, findPath, findPathValue} from './utils'
@@ -42,9 +43,10 @@ function fullPath(path, parent) {
 
 function renderMatch(routes, location, options) {
   const result = findPathValue(routes, location, options)
-  if (!result) return null
+  if (result) return render(result.value, result.params)
 
-  return render(result.value, result.params)
+  warnNotFound(routes, location)
+  return null
 }
 
 function render(route, params, children) {

@@ -59,7 +59,15 @@ assertJSX(
   "Not found",
 
   <Router location='/s'>
-    <Index/>
+    <Index>
+      <Users path='users'>
+        <User path=':userId'>
+          <Pets path='pets'>
+            <Pet path=':petId'/>
+          </Pets>
+        </User>
+      </Users>
+    </Index>
   </Router>,
 
   null,
