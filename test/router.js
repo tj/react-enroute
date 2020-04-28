@@ -10,13 +10,7 @@ assertJSX(
 
   <Router location='/s'>
     <Index>
-      <Users path='users'>
-        <User path=':userId'>
-          <Pets path='pets'>
-            <Pet path=':petId'/>
-          </Pets>
-        </User>
-      </Users>
+      <Users path='users'/>
     </Index>
   </Router>,
 
