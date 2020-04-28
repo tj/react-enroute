@@ -1,7 +1,9 @@
 ### 4.0.3
 
 - remove trailing '/' from paths for better UX
-- warn route not found in debug mode
+- empty location renders root index (actual for name-based routes), not defined
+location renders `null` (as before)
+- warn route not found in debug mode with checked path list
 - simplify example
 
 ### 4.0.2
