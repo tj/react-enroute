@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
 import {useLocation, usePush} from './use-location'
 import {render} from 'react-dom'
-import {Router, loc} from '..'
+import {Router, loc} from '../src'
 
 
 const Data = {
