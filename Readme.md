@@ -5,13 +5,12 @@ This package is not meant to be a drop-in replacement for react-router,
 just a smaller simpler alternative.
 
 See [path-to-regexp readme](https://github.com/pillarjs/path-to-regexp#usage)
-for matching pattern rules and options. Keep in mind location and params will
-not be automatically encoded/decoded. Check
-[encode and decode options](https://github.com/pillarjs/path-to-regexp#match)
+for matching pattern rules and options. Check
+[encode and decode](https://github.com/pillarjs/path-to-regexp#match)
 if you need it.
 
-Library size limited to **1.8 KB** (no utils, all deps, minified and gzipped)
-with [Size Limit](https://github.com/ai/size-limit).
+Router size [limited](https://github.com/ai/size-limit) to **1.8 KB**
+(all deps, minified and gzipped).
 
 ## Installation
 
