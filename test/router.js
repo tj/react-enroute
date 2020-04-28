@@ -297,13 +297,36 @@ assertJSX(
 )
 
 assertJSX(
-  "Empty and not defined location should render null",
+  "Not defined location should render null",
 
   <Router>
     <NotFound path='(.*)'/>
   </Router>,
 
   null,
+)
+
+assertJSX(
+  "Paths without leading slash",
+
+  <Router location='pets'>
+    <Users path='users'/>
+    <Pets path='pets'/>
+  </Router>,
+
+  <Pets/>,
+)
+
+assertJSX(
+  "Empty location should render index",
+
+  <Router location=''>
+    <Index/>
+    <Users path='users'/>
+    <Pets path='pets'/>
+  </Router>,
+
+  <Index/>,
 )
 
 function assertJSX(test, actual, expected) {
