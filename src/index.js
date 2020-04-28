@@ -28,21 +28,16 @@ function addRoutes(elements, parent, routes = {}) {
 }
 
 function createRoute(element, parent) {
-  let path = fullPath(element.props.path, parent)
-  path = cleanPath(path)
+  const path = fullPath(element.props.path, parent)
+    .replace(/\/$/, '') // remove last slash
 
   return {path, parent, element}
 }
 
 function fullPath(path, parent) {
-  if (!path) return parent ? parent.path : '/' // index route
-  if (path[0] === '/') return path // absolute
-  if (!parent) return path // root
-  return `${parent.path}/${path}`
-}
-
-function cleanPath(path) {
-  return path.replace(/\/\//g, '/')
+  if (!path) return parent ? parent.path : '' // index route
+  if (!parent || path[0] === '/') return path // absolute or root
+  return parent.path + '/' + path
 }
 
 function renderMatch(routes, location, options) {

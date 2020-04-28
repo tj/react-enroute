@@ -32,6 +32,12 @@ function Pets({children}) {
   </div>
 }
 
+function AllPets() {
+  return <div>
+    <h2>All Pets</h2>
+  </div>
+}
+
 function Pet({petId}) {
   return <div>pet {petId}</div>
 }
@@ -127,6 +133,21 @@ assertJSX(
       <Pet petId={12}/>
     </Pets>
   </Index>,
+)
+
+assertJSX(
+  "Route with path part ends with '/' and nested index",
+
+  <Router location='/pets'>
+    <Pets path='/pets/'>
+      <AllPets/>
+      <Pet path=':petId'/>
+    </Pets>
+  </Router>,
+
+  <Pets>
+    <AllPets/>
+  </Pets>,
 )
 
 assertJSX(
