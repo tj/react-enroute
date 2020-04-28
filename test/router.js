@@ -1,58 +1,8 @@
 import {equal} from 'assert'
 import React from 'react'
 import {renderToStaticMarkup} from 'react-dom/server'
+import {Index, Users, User, Pets, Pet, AllPets, NotFound, List} from './components'
 import {Router} from '..'
-
-
-function Index({children}) {
-  return <div>
-    <h1>Index</h1>
-    {children}
-  </div>
-}
-
-function Users({children}) {
-  return <div>
-    <h2>Users</h2>
-    {children}
-  </div>
-}
-
-function User({userId, children}) {
-  return <div>
-    <h2>User {userId}</h2>
-    {children}
-  </div>
-}
-
-function Pets({children}) {
-  return <div>
-    <h2>Pets</h2>
-    {children}
-  </div>
-}
-
-function AllPets() {
-  return <div>
-    <h2>All Pets</h2>
-  </div>
-}
-
-function Pet({petId}) {
-  return <div>pet {petId}</div>
-}
-
-function NotFound() {
-  return <div>Not Found</div>
-}
-
-function List({items}) {
-  return <ul>
-    {items.map((item, i) => (
-      <li key={i}>{item}</li>
-    ))}
-  </ul>
-}
 
 
 assertJSX(
