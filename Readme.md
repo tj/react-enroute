@@ -63,8 +63,22 @@ const RouterOptions = {decode: decodeURIComponent}
 ```
 
 All following routes with the same full path override previous. Matching goes
-from top to bottom, so the more general rules that will be located above take
-precedence. You should put catch-all rules (such as 404 page) below.
+from top to bottom, so more general rules coming first take precedence. You
+should put more concrete rules above catch-all.
+
+Right order:
+```js
+<Route>
+  <Users path='/users'>
+    <Mike path='mike'/>
+    <OtherUser path=':id'/>
+  </Users>
+  
+  <NotFound path='(.*)'/>
+</Route>
+```
+
+Not found page (404) should be the last.
 
 ## Utils
 
