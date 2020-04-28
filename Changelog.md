@@ -1,6 +1,7 @@
 ### 4.0.3
 
 - remove trailing '/' from paths for better UX
+- warn route not found in debug mode
 - simplify example
 
 ### 4.0.2
