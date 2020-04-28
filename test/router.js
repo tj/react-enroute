@@ -83,7 +83,7 @@ assertJSX(
   "Route with path part ends with '/' and child",
 
   <Router location='/pets/12'>
-    <Pets path='pets/'>
+    <Pets path='/pets/'>
       <Pet path=':petId'/>
     </Pets>
   </Router>,
