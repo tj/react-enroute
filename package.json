@@ -54,7 +54,7 @@
   ],
   "size-limit": [
     {
-      "path": "esm",
+      "path": "esm/index.js",
       "import": "{Router}",
       "limit": "1.8 KB"
     }
