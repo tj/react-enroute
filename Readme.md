@@ -62,6 +62,10 @@ const RouterOptions = {decode: decodeURIComponent}
 </Router>
 ```
 
+All following routes with the same full path override previous. Matching goes
+from top to bottom, so the more general rules that will be located above take
+precedence. You should put catch-all rules (such as 404 page) below.
+
 ## Utils
 
 ### genLocation (alias: loc)
@@ -83,7 +87,7 @@ isPath('/users/:id', '/users/42') // => true
 
 ### findPath
 
-Search path.
+Search path by location.
 
 ```js
 findPath(['/users', '/users/:id'], '/users/42')
