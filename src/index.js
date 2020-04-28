@@ -11,17 +11,17 @@ export function Router({
 }) {
   if (!location) return null
 
-  const routes = addRoutes(children)
+  const routes = addRoutes(children, {})
   return renderMatch(routes, location, options)
 }
 
-function addRoutes(elements, parent, routes = {}) {
+function addRoutes(elements, routes, parent) {
   Children.forEach(elements, element => {
     const route = createRoute(element, parent)
     routes[route.path] = route
 
     const {children} = element.props
-    addRoutes(children, route, routes)
+    addRoutes(children, routes, route)
   })
 
   return routes
