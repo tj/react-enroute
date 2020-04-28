@@ -1,3 +1,8 @@
+### 4.0.3
+
+- remove trailing '/' from paths for better UX
+- simplify example
+
 ### 4.0.2
 
 - return `null` for empty and not defined location to prevent show catch-all
