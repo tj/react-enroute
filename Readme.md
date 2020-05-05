@@ -1,10 +1,9 @@
 # react-enroute
 
-Simple React router with a small footprint for modern browsers.
-This package is not meant to be a drop-in replacement for react-router,
-just a smaller simpler alternative.
+Simple React router with a small footprint for modern browsers. The lib is not
+replacement for react-router, just a smaller simpler alternative.
 
-See [path-to-regexp readme](https://github.com/pillarjs/path-to-regexp#usage)
+See [path-to-regexp](https://github.com/pillarjs/path-to-regexp#usage)
 for matching pattern rules and options. Check
 [encode and decode](https://github.com/pillarjs/path-to-regexp#match)
 if you need it.
