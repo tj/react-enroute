@@ -1,3 +1,7 @@
+### 4.0.4
+
+- ignore leading '/' for better UX
+
 ### 4.0.3
 
 - remove trailing '/' from paths for better UX
