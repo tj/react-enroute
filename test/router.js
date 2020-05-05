@@ -109,6 +109,26 @@ assertJSX(
 )
 
 assertJSX(
+  "Location starts and ends with '/' but route is not",
+
+  <Router location='/pets/'>
+    <Pets path='pets'/>
+  </Router>,
+
+  <Pets/>,
+)
+
+assertJSX(
+  "Path starts and ends with '/' but location is not",
+
+  <Router location='pets'>
+    <Pets path='/pets/'/>
+  </Router>,
+
+  <Pets/>,
+)
+
+assertJSX(
   "Many deeply nested route",
 
   <Router location='/users/5'>
@@ -265,21 +285,6 @@ assertJSX(
       <Pet petId={12}/>
     </Pets>
   </Index>,
-)
-
-assertJSX(
-  "Options",
-
-  <Router location='/pets/12/' options={{strict: true}}>
-    <Index>
-      <Pets path='pets'>
-        <Pet path=':petId'/>
-      </Pets>
-    </Index>
-    <NotFound path='(.*)'/>
-  </Router>,
-
-  <NotFound/>,
 )
 
 assertJSX(

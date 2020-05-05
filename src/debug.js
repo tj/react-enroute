@@ -3,11 +3,7 @@ export function warnNotFound(routes, location) {
 
   const tried = Object.keys(routes)
     .map(path => {
-      // empty path is root index
-      // if checked location started with '/' show it as '/'
-      if (!path && location[0] === '/') {
-        path = '/'
-      }
+      if (!path) path = "''"
       return `\n- ${path}`
     })
 

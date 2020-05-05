@@ -30,8 +30,8 @@ function addRoutes(elements, routes, parent) {
 }
 
 function createRoute(element, parent) {
-  const path = fullPath(element.props.path, parent)
-    .replace(/\/$/, '') // remove trailing slash
+  let path = fullPath(element.props.path, parent)
+  path = removeEdgeSlashes(path)
 
   return {path, parent, element}
 }
@@ -43,6 +43,8 @@ function fullPath(path, parent) {
 }
 
 function renderMatch(routes, location, options) {
+  location = removeEdgeSlashes(location)
+
   const result = findPathValue(routes, location, options)
   if (result) return render(result.value, result.params)
 
@@ -55,4 +57,8 @@ function render(route, params, children) {
   const node = cloneElement(element, params, children)
 
   return parent ? render(parent, params, node) : node
+}
+
+function removeEdgeSlashes(path) {
+  return path.replace(/^\/|\/$/g, '')
 }
