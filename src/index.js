@@ -10,6 +10,7 @@ export function Router({
   options,
   children,
 }) {
+  // null or undefined
   if (location == null) return null
 
   const routes = addRoutes(children, {})
