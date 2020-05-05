@@ -60,7 +60,7 @@ const RouterOptions = {decode: decodeURIComponent}
 </Router>
 ```
 
-All following routes with the same full path override previous. Matching goes
+Following route with the same full path overrides previous. Matching goes
 from top to bottom, so more general rules coming first take precedence. You
 should put more concrete rules above catch-all.
 
