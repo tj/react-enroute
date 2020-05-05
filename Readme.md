@@ -67,14 +67,11 @@ should put more concrete rules above catch-all.
 Right order:
 
 ```js
-<Route>
-  <Users path='/users'>
-    <Mike path='mike'/>
-    <OtherUser path=':id'/>
-  </Users>
-  
+<Router>
+  <Mike path='mike'/>
+  <OtherPerson path=':name'/>
   <NotFound path='(.*)'/>
-</Route>
+</Router>
 ```
 
 Not found page (404) should be the last.
