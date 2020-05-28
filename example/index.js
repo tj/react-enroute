@@ -41,7 +41,7 @@ function Index({location, children}) {
       </p>
       <p>Current location is {location}</p>
       {children}
-      <Link to='/something-not-exists'>Something non-exists</Link>
+      <Link to='/something-not-exists'>Something non-existent</Link>
     </>
   )
 }
