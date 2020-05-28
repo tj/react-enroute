@@ -39,7 +39,7 @@ function Index({location, children}) {
         At least it is not a to-do list.
         Check out <Link to='/users'>users</Link> or <Link to='/pets'>pets</Link>.
       </p>
-      <p>Current location is {location}</p>
+      <p>Current location is <b>{location}</b></p>
       {children}
       <Link to='/something-not-exists'>Something non-existent</Link>
     </>
