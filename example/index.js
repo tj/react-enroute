@@ -1,5 +1,5 @@
-import React, {useCallback} from 'react'
-import {useLocation, usePush} from './use-location'
+import React, {useEffect} from 'react'
+import {useLocation, setLinksHandler} from './use-location'
 import {render} from 'react-dom'
 import {Router, loc} from '../src'
 
@@ -18,30 +18,17 @@ const Data = {
   },
 }
 
-function Link({to, ...props}) {
-  const push = usePush()
-
-  const click = useCallback(e => {
-    e.preventDefault()
-    push(to)
-  }, [to])
-
-  return (
-    <a href={to} onClick={click} {...props}/>
-  )
-}
-
 function Index({location, children}) {
   return (
     <>
       <h1>Pet List</h1>
       <p>
         At least it is not a to-do list.
-        Check out <Link to='/users'>users</Link> or <Link to='/pets'>pets</Link>.
+        Check out <a href='/users'>users</a> or <a href='/pets'>pets</a>.
       </p>
       <p>Current location is <b>{location}</b></p>
       {children}
-      <Link to='/something-not-exists'>Something non-existent</Link>
+      <a href='/something-not-exists'>Something non-existent</a>
     </>
   )
 }
@@ -55,7 +42,7 @@ function Users({children}) {
       <ul>
         {Object.values(users).map(({id, name}) => (
           <li key={id}>
-            <Link to={loc('/users/:id', {id})}>{name}</Link>
+            <a href={loc('/users/:id', {id})}>{name}</a>
           </li>
         ))}
       </ul>
@@ -75,7 +62,7 @@ function User({id}) {
       <ul>
         {userPets.map(({id, name}) => (
           <li key={id}>
-            <Link to={loc('/pets/:id', {id})}>{name}</Link>
+            <a href={loc('/pets/:id', {id})}>{name}</a>
           </li>
         ))}
       </ul>
@@ -92,7 +79,7 @@ function Pets({children}) {
       <ul>
         {Object.values(pets).map(({id, name}) => (
           <li key={id}>
-            <Link to={loc('/pets/:id', {id})}>{name}</Link>
+            <a href={loc('/pets/:id', {id})}>{name}</a>
           </li>
         ))}
       </ul>
@@ -109,8 +96,8 @@ function Pet({id}) {
 
   return (
     <p>
-      {pet.name} is a {pet.species} and is owned
-      by <Link to={'/users/' + user.id}>{user.name}</Link>.
+      <b>{pet.name}</b> is a <b>{pet.species}</b> and is owned
+      by <a href={'/users/' + user.id}><b>{user.name}</b></a>.
     </p>
   )
 }
@@ -121,6 +108,8 @@ function NotFound() {
 
 function App() {
   const location = useLocation()
+
+  useEffect(setLinksHandler, [])
 
   return (
     <Router {...{location}}>
