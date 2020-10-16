@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react'
-import {useLocation, setLinksHandler} from './use-location'
+import {useEffect} from 'react'
 import {render} from 'react-dom'
+import {useLocation, setLinksHandler} from './use-location'
 import {Router, loc} from '../src'
 
 

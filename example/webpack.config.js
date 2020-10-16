@@ -5,7 +5,7 @@ const Babel = {
   options: {
     presets: ['@babel/preset-env'],
     plugins: [
-      '@babel/plugin-transform-react-jsx',
+      ['@babel/plugin-transform-react-jsx', {runtime: 'automatic'}],
     ],
   },
 }
