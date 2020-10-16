@@ -14,7 +14,7 @@ import {pathToRegexp, compile, match} from 'path-to-regexp'
  */
 
 export function genLocation(path, params, options) {
-  if (!path) return ""
+  if (!path) return ''
   return compile(path, options)(params)
 }
 
