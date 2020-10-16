@@ -1,3 +1,7 @@
+### 4.1.0
+
+- named capturing groups (up path-to-regexp to 6.2.0)
+
 ### 4.0.4
 
 - ignore leading '/' for better UX
