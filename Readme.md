@@ -74,7 +74,7 @@ Right order:
 </Router>
 ```
 
-Not found page (404) should be the last.
+**Not found** page (404) should be the last.
 
 Paths may not start with `/`, the name-based syntax is ok:
 
