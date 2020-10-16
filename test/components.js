@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 export function Index({children}) {
   return <div>
     <h1>Index</h1>

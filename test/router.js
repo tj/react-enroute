@@ -1,5 +1,4 @@
 import {equal} from 'assert'
-import React from 'react'
 import {renderToStaticMarkup} from 'react-dom/server'
 import {Index, Users, User, Pets, Pet, AllPets, NotFound, List} from './components'
 import {Router} from '..'
