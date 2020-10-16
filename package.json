@@ -10,13 +10,13 @@
   "react-native": "src",
   "sideEffects": false,
   "scripts": {
+    "start": "webpack serve --config example/webpack.config.js",
     "prepack": "yarn test && size-limit",
     "build": "yarn clean && yarn cjs && yarn esm",
     "cjs": "babel --out-dir cjs src",
     "esm": "cross-env ESM=1 babel --out-dir esm src",
     "test": "yarn build && cross-env NODE_ENV=production babel-node test",
-    "clean": "rimraf cjs esm",
-    "serve": "webpack serve --config example/webpack.config.js"
+    "clean": "rimraf cjs esm"
   },
   "keywords": [
     "react",
