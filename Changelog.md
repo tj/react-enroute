@@ -1,3 +1,7 @@
+### 4.1.1
+
+- fix routes count in debug
+
 ### 4.1.0
 
 - named capturing groups (up path-to-regexp to 6.2.0)
