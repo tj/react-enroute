@@ -4,3 +4,8 @@ node_modules
 example/bundle.js
 .DS_Store
 .idea
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
