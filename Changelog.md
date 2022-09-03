@@ -1,3 +1,8 @@
+### 4.1.2
+
+- up path-to-regexp to 6.2.1
+- up deps
+
 ### 4.1.1
 
 - fix routes count in debug
