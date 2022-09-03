@@ -8,7 +8,7 @@ for matching pattern rules and options. Check
 [encode and decode](https://github.com/pillarjs/path-to-regexp#match)
 if you need it.
 
-Router size [limited](https://github.com/ai/size-limit) to **1.8 KB**
+Router size [limited](https://github.com/ai/size-limit) to **~2 KB**
 (all deps, minified and gzipped).
 
 ## Installation

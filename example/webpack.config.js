@@ -17,7 +17,9 @@ module.exports = {
     rules: [Babel],
   },
   devServer: {
-    contentBase: './example',
+    static: {
+      directory: './example',
+    },
     historyApiFallback: true,
   },
 }
